@@ -1,0 +1,35 @@
+import os
+import telebot
+import random  
+# Замени 'TOKEN' на токен твоего бота
+# Этот токен ты получаешь от BotFather, чтобы бот мог работать
+token = ("7939803914:AAF-kyXapOw46YlfrqxuxQDj0uB5HizkEnI")
+bot = telebot.TeleBot(token)
+
+    
+
+requests = {}
+
+a = random.randint(1,10)
+
+def get_fox_image_url():    
+        url = 'https://randomfox.ca/images/3.jpg'
+        res = requests.get(url)
+        data = res.json()
+        return data['url']
+
+def get_pokemon_image_url2():    
+        url2 = 'https://pokeapi.co/api/v2/pokemon/ditto'
+        res2 = requests.get(url2)
+        data2 = res2.json()
+        return data2['url2']
+    
+    
+@bot.message_handler(commands=['rfrpp'])
+def rfrpp(message):
+    if a == 1:
+        image_url = get_fox_image_url()
+        bot.reply_to(message, image_url)
+    else:
+        image_url = get_pokemon_image_url2()
+        bot.reply_to(message, image_url)
